@@ -79,19 +79,12 @@ const InvoicesPage: React.FC = () => {
           );
         }
 
-        // Extraire, parser et stocker les données parsées ET originales
-        // Extraire, parser et stocker les données parsées, originales ET l'URL du fichier
-        const rawData: ProcessedInvoice[] = []; // Utiliser ProcessedInvoice ici
+        const rawData: ProcessedInvoice[] = [];
         for (const item of responseData) {
           if (item && typeof item.json === "string") {
             try {
               const invoiceObject: Invoice = JSON.parse(item.json);
-              if (
-                invoiceObject &&
-                typeof invoiceObject === "object" &&
-                invoiceObject.supplier &&
-                invoiceObject.number
-              ) {
+              if (invoiceObject && typeof invoiceObject === "object") {
                 // Stocker l'objet parsé, la chaîne JSON originale ET l'URL du fichier
                 // Nettoyer l'URL du fichier des backticks et espaces superflus
                 let fileUrl = item.file?.trim();
