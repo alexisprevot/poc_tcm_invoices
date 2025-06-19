@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link"; // Importer le composant Link
 
 interface Voyage {
   permalink: string;
@@ -49,9 +50,9 @@ const PocCdvPage: React.FC = () => {
     <div className="bg-gray-50 min-h-screen">
       <nav className="bg-white shadow-md mb-6">
         <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-          <a href="/" className="text-xl font-semibold text-gray-700">
+          <Link href="/" className="text-xl font-semibold text-gray-700">
             POC CDV - Voyages
-          </a>
+          </Link>
           <ul className="flex space-x-4">
             <li>
               <a
