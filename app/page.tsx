@@ -59,6 +59,12 @@ export default function Home() {
             Voir la liste des factures
           </Link>
         </div>
+        {/* Ajouter le lien vers la page du POC CDV */}
+        <div className="mt-8">
+          <Link href="/poc-cdv" className="text-blue-600 hover:underline">
+            Voir le POC CDV
+          </Link>
+        </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
