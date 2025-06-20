@@ -1,7 +1,7 @@
 "use client";
 
+import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import Link from "next/link"; // Importer le composant Link
 
 interface Voyage {
   permalink: string;
@@ -12,8 +12,12 @@ interface Voyage {
 
 const PocCdvPage: React.FC = () => {
   const [voyages, setVoyages] = useState<Voyage[]>([]);
+  const [countryInfo, setCountryInfo] = useState<
+    { code: string; text: string }[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchVoyages = async () => {
@@ -26,13 +30,30 @@ const PocCdvPage: React.FC = () => {
         if (!response.ok)
           throw new Error("Erreur lors du chargement des voyages");
         const data = await response.json();
+
+        //const databis = await response.info_travel();
         // data est [{...}], et data[0].json est une chaîne JSON du tableau de voyages
         if (!Array.isArray(data) || typeof data[0]?.json !== "string") {
           throw new Error("Format inattendu");
         }
         // On parse la string JSON pour obtenir le tableau d'objets voyage
         const voyagesArray = JSON.parse(data[0].json);
+        const countryInfo = JSON.parse(data[0].info_travel);
+        console.log(
+          "countryInfo reçu",
+          countryInfo,
+          Array.isArray(countryInfo)
+        );
+        console.log(
+          "Rendu MODALE - countryInfo:",
+          countryInfo,
+          "isArray?",
+          Array.isArray(countryInfo),
+          "length",
+          countryInfo.length
+        );
         setVoyages(voyagesArray);
+        setCountryInfo(countryInfo);
       } catch (err) {
         setError(
           err instanceof Error
@@ -62,19 +83,67 @@ const PocCdvPage: React.FC = () => {
                 Voyages
               </a>
             </li>
-            <li>
-              <a href="/invoices" className="text-gray-600 hover:text-blue-600">
-                Factures
-              </a>
-            </li>
           </ul>
         </div>
       </nav>
 
       <div className="container mx-auto p-6 pt-0">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">
-          Inspirations de voyages
-        </h1>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-3xl font-bold text-gray-800 border-b pb-2">
+            Inspirations de voyages
+          </h1>
+          <button
+            type="button"
+            className="ml-4 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 text-sm"
+            onClick={() => setInfoModalOpen(true)}
+          >
+            ℹ️ Informations voyageurs
+          </button>
+        </div>
+        <p className="text-gray-600 mb-6">
+          Découvrez nos voyages inspirants et les informations utiles pour
+          chaque destination.
+        </p>
+        {infoModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center p-4 z-50">
+            <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="p-4 border-b flex justify-between items-center">
+                <h3 className="text-lg font-semibold">
+                  Informations voyageurs
+                </h3>
+                <button
+                  onClick={() => setInfoModalOpen(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                  aria-label="Fermer"
+                >
+                  &times;
+                </button>
+              </div>
+              <div className="p-4 text-sm space-y-8">
+                {Array.isArray(countryInfo) && countryInfo.length > 0 ? (
+                  countryInfo.map((info) => (
+                    <div
+                      key={info.code}
+                      className="bg-gray-100 rounded-lg p-4 shadow-inner"
+                    >
+                      <div dangerouslySetInnerHTML={{ __html: info.text }} />
+                    </div>
+                  ))
+                ) : (
+                  <div>Aucune information voyageur disponible.</div>
+                )}
+              </div>
+              <div className="p-3 border-t text-right">
+                <button
+                  onClick={() => setInfoModalOpen(false)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                  Fermer
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         {loading && (
           <div className="flex justify-center items-center p-10">
             <p className="text-lg text-gray-500">Chargement des voyages...</p>
