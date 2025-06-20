@@ -71,9 +71,9 @@ const PocCdvPage: React.FC = () => {
     <div className="bg-gray-50 min-h-screen">
       <nav className="bg-white shadow-md mb-6">
         <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-          <Link href="/" className="text-xl font-semibold text-gray-700">
+          <a className="text-xl font-semibold text-gray-700">
             POC CDV - Voyages
-          </Link>
+          </a>
           <ul className="flex space-x-4">
             <li>
               <a
