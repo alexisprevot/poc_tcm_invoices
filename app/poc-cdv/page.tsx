@@ -1,6 +1,5 @@
 "use client";
 
-import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 interface Voyage {
