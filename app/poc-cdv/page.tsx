@@ -121,14 +121,33 @@ const PocCdvPage: React.FC = () => {
               chaque destination.
             </p>
           </div>
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-60 transition"
-            onClick={() => setInfoModalOpen(true)}
-          >
-            <span className="text-xl">ℹ️</span>
-            Informations voyageurs
-          </button>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-60 transition"
+              onClick={() => setInfoModalOpen(true)}
+            >
+              <span className="text-xl">ℹ️</span>
+              Informations voyageurs
+            </button>
+            <a
+              href="https://n8n.srv749429.hstgr.cloud/form/28b0a9c5-48f0-4bc5-88fd-f808ad7315ba"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold rounded-full shadow-lg hover:from-pink-600 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-60 transition"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24">
+                <path
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Changer de voyage
+            </a>
+          </div>
         </div>
 
         {/* Modal */}
