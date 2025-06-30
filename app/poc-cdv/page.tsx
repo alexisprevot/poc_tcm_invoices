@@ -124,7 +124,7 @@ const PocCdvPage: React.FC = () => {
           <div className="flex gap-3">
             <button
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-60 transition"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-60 transition cursor-pointer"
               onClick={() => setInfoModalOpen(true)}
             >
               <span className="text-xl">ℹ️</span>
