@@ -134,7 +134,7 @@ const PocCdvPage: React.FC = () => {
         {/* Modal */}
         {infoModalOpen && (
           <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 animate-fade-in">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-blue-100 relative animate-slide-up">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-7xl w-full max-h-[80vh] overflow-y-auto border border-blue-100 relative animate-slide-up">
               <div className="p-6 border-b flex justify-between items-center">
                 <h3 className="text-2xl font-bold text-blue-700">
                   Informations voyageurs
